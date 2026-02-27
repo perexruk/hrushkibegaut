@@ -1,5 +1,6 @@
 import asyncio
 from aiogram import Bot, Dispatcher
+from aiogram.fsm.storage.memory import MemoryStorage
 
 from config import TOKEN
 from routers.menu import router
@@ -7,7 +8,10 @@ from scheduler import scheduler
 
 async def main():
     bot = Bot(token=TOKEN)
-    dp = Dispatcher()
+
+    storage = MemoryStorage()
+    
+    dp = Dispatcher(torage=storage)
 
     dp.include_router(router)
 
